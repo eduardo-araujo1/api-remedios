@@ -25,10 +25,19 @@ public class RemedioController {
     public List<DadosListagemRemedios> listar(){
         return remedioRepository.findAll().stream().map(DadosListagemRemedios::new).toList();}
 
-        @PutMapping
-        @Transactional
-        public void atualizar(@RequestBody @Valid DadosAtualizarRemedio dados){
-            Remedio remedio = remedioRepository.getReferenceById(dados.id());
-            remedio.atualizarInformacoes(dados);
-        }
+
+    @PutMapping
+    @Transactional
+    public void atualizar(@RequestBody @Valid DadosAtualizarRemedio dados){
+        Remedio remedio = remedioRepository.getReferenceById(dados.id());
+        remedio.atualizarInformacoes(dados);
+    }
+
+    @DeleteMapping("{id}")
+    @Transactional
+    public void excluir(@PathVariable Long id){
+        remedioRepository.deleteById(id);
+
+    }
+
 }
