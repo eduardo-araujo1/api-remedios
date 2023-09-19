@@ -18,10 +18,11 @@ public class Remedio {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String nome;
+
     @Enumerated(EnumType.STRING)
     private Via via;
+
     private String lote;
     private int quantidade;
     private LocalDate validade;
@@ -29,7 +30,10 @@ public class Remedio {
     @Enumerated(EnumType.STRING)
     private Laboratorio laboratorio;
 
+    private Boolean ativo;
+
     public Remedio(DadosCadastroRemedios dados) {
+        this.ativo= true;
         this.nome=dados.nome();
         this.via=dados.via();
         this.lote=dados.lote();
@@ -48,5 +52,9 @@ public class Remedio {
         if (dados.laboratorio() != null){
             this.laboratorio=dados.laboratorio();
         }
+    }
+
+    public void inativar() {
+        this.ativo=false;
     }
 }
