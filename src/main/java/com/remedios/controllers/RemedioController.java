@@ -46,4 +46,11 @@ public class RemedioController {
         remedio.inativar();
     }
 
+    @PutMapping("reativar/{id}")
+    @Transactional
+    public void reativar(@PathVariable Long id){
+        Remedio remedio = remedioRepository.getReferenceById(id);
+        remedio.reativar();
+    }
+
 }
